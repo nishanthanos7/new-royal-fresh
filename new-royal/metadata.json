@@ -1,0 +1,8 @@
+{
+  "name": "New Royal Beauty and Unisex Salon",
+  "description": "Premium beauty and unisex salon in Kathmandu and Gwarko, Lalitpur. Book your appointment via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
