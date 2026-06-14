@@ -32,11 +32,14 @@ export default function EditPanel() {
   async function tryAuth(candidate: string) {
     setVerifying(true);
     setAuthError('');
+    const ctrl = new AbortController();
+    const timer = window.setTimeout(() => ctrl.abort(), 15000);
     try {
       const res = await fetch('/api/images', {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-edit-pin': candidate },
         body: JSON.stringify({ verify: true }),
+        signal: ctrl.signal,
       });
       if (res.status === 401) {
         setAuthError('Wrong PIN. Try again.');
@@ -44,7 +47,9 @@ export default function EditPanel() {
         return;
       }
       if (!res.ok) {
-        setAuthError(`Server error (${res.status}).`);
+        const detail = await res.json().catch(() => null) as { detail?: string; error?: string } | null;
+        console.error('[EditPanel] /api/images verify failed', { status: res.status, body: detail });
+        setAuthError(`Server error (${res.status}): ${detail?.detail || detail?.error || 'unknown'}`);
         return;
       }
       sessionStorage.setItem(PIN_STORAGE_KEY, candidate);
@@ -54,9 +59,12 @@ export default function EditPanel() {
         .catch(() => ({ images: {} }));
       const images = (cur && cur.images) || {};
       setDraft({ ...DEFAULTS, ...images });
-    } catch {
-      setAuthError('Network error. Try again.');
+    } catch (err) {
+      const aborted = (err as { name?: string })?.name === 'AbortError';
+      console.error('[EditPanel] tryAuth error', err);
+      setAuthError(aborted ? 'Request timed out. Check Vercel function logs.' : 'Network error. Try again.');
     } finally {
+      window.clearTimeout(timer);
       setVerifying(false);
     }
   }
