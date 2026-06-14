@@ -27,55 +27,76 @@ function jsonResponse(data: unknown, status = 200): Response {
 export default async function handler(req: Request): Promise<Response> {
   const method = req.method ?? 'GET';
 
-  if (method === 'GET') {
-    const images = await readImages();
-    return jsonResponse({ images });
-  }
-
-  if (method === 'POST') {
-    const expected = process.env.EDIT_PIN;
-    const pin = req.headers.get('x-edit-pin') ?? '';
-    if (!expected || pin !== expected) {
-      return jsonResponse({ error: 'Invalid PIN' }, 401);
+  try {
+    if (method === 'GET') {
+      const images = await readImages();
+      return jsonResponse({ images });
     }
 
-    let body: unknown;
-    try {
-      body = await req.json();
-    } catch {
-      return jsonResponse({ error: 'Bad JSON' }, 400);
-    }
-
-    if (body && typeof body === 'object' && (body as { verify?: boolean }).verify === true) {
-      return jsonResponse({ ok: true });
-    }
-
-    const raw =
-      body && typeof body === 'object' && 'images' in body
-        ? (body as { images: unknown }).images
-        : body;
-
-    if (!raw || typeof raw !== 'object') {
-      return jsonResponse({ error: 'Bad payload' }, 400);
-    }
-
-    const clean: Record<string, string> = {};
-    for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
-      if (typeof k === 'string' && typeof v === 'string' && v.length > 0 && v.length < 4096) {
-        clean[k] = v;
+    if (method === 'POST') {
+      const expected = process.env.EDIT_PIN;
+      const pin = req.headers.get('x-edit-pin') ?? '';
+      if (!expected || pin !== expected) {
+        return jsonResponse({ error: 'Invalid PIN' }, 401);
       }
+
+      let body: unknown;
+      try {
+        body = await req.json();
+      } catch {
+        return jsonResponse({ error: 'Bad JSON' }, 400);
+      }
+
+      if (body && typeof body === 'object' && (body as { verify?: boolean }).verify === true) {
+        return jsonResponse({ ok: true });
+      }
+
+      const raw =
+        body && typeof body === 'object' && 'images' in body
+          ? (body as { images: unknown }).images
+          : body;
+
+      if (!raw || typeof raw !== 'object') {
+        return jsonResponse({ error: 'Bad payload' }, 400);
+      }
+
+      const clean: Record<string, string> = {};
+      for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
+        if (typeof k === 'string' && typeof v === 'string' && v.length > 0 && v.length < 4096) {
+          clean[k] = v;
+        }
+      }
+
+      const token = process.env.BLOB_READ_WRITE_TOKEN;
+      if (!token) {
+        console.error('[api/images] Missing BLOB_READ_WRITE_TOKEN env var');
+        return jsonResponse({ error: 'Blob storage not configured' }, 500);
+      }
+
+      await put(BLOB_PATHNAME, JSON.stringify(clean), {
+        access: 'public',
+        contentType: 'application/json',
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        cacheControlMaxAge: 0,
+        token,
+      });
+
+      return jsonResponse({ ok: true, images: clean });
     }
 
-    await put(BLOB_PATHNAME, JSON.stringify(clean), {
-      access: 'public',
-      contentType: 'application/json',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      cacheControlMaxAge: 0,
+    return jsonResponse({ error: 'Method not allowed' }, 405);
+  } catch (err) {
+    const e = err as { name?: string; message?: string; stack?: string };
+    console.error('[api/images] Unhandled error', {
+      method,
+      name: e?.name,
+      message: e?.message,
+      stack: e?.stack,
     });
-
-    return jsonResponse({ ok: true, images: clean });
+    return jsonResponse(
+      { error: 'Internal Server Error', detail: e?.message ?? String(err) },
+      500,
+    );
   }
-
-  return jsonResponse({ error: 'Method not allowed' }, 405);
 }
