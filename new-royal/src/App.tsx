@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, Star, ShieldCheck, Sparkles, Award, Menu, X, Crown, ChevronsLeftRight } from 'lucide-react';
+import { AssetProvider, useAsset, useAssetMap } from './imageRegistry';
+import EditPanel from './EditPanel';
 
 const WHATSAPP_NUMBER = '9779813451412';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -133,6 +135,7 @@ function Navbar() {
 }
 
 function Hero() {
+  const heroSrc = useAsset('hero.main');
   return (
     <section id="top" className="relative pt-8 sm:pt-10 lg:pt-16 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -209,7 +212,7 @@ function Hero() {
         >
           <div className="relative aspect-4/5 sm:aspect-5/6 rounded-2xl lg:rounded-3xl overflow-hidden ring-glow border border-white/10 group">
             <img
-              src="https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780710967644-BZv0z3Qo.jpg"
+              src={heroSrc}
               alt="New Royal Salon Interior"
               className="w-full h-full object-cover object-center premium-filter transition-transform duration-1000 group-hover:scale-105"
             />
@@ -245,12 +248,12 @@ function Hero() {
 
 function Marquee() {
   const images = [
-    "https://6a23007fb1f86057657a3754--preeminent-kheer-e41022.netlify.app/assets/royal_bride_1780677236702-DtnfrWoW.png",
-    "https://6a23007fb1f86057657a3754--preeminent-kheer-e41022.netlify.app/assets/styling_blowdry_1780677263541-DR4ku7VN.png",
-    "https://6a23007fb1f86057657a3754--preeminent-kheer-e41022.netlify.app/assets/salon_interior_1780677288182-Cdx7sXtJ.png",
-    "https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/hairstylist_cutting_hair_1780683711133-Dj7VEaxz.png",
-    "https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780710973845-CLwz5PCE.webp",
-    "https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780715097350-BvG1HgsH.jpg"
+    useAsset('marquee.0'),
+    useAsset('marquee.1'),
+    useAsset('marquee.2'),
+    useAsset('marquee.3'),
+    useAsset('marquee.4'),
+    useAsset('marquee.5'),
   ];
 
   return (
@@ -271,18 +274,6 @@ function Marquee() {
   );
 }
 
-const CELEB_IMAGES = [
-  'https://i.ibb.co/F4qSfRCB/image.png',
-  'https://i.ibb.co/cchtWCQ5/image.png',
-  'https://i.ibb.co/33MKMqw/image.png',
-  'https://i.ibb.co/gZ62Sdk8/image.png',
-  'https://i.ibb.co/4Z9hrZ8C/image.png',
-  'https://i.ibb.co/Jw87Hhm4/image.png',
-  'https://i.ibb.co/2YSWyqkG/image.png',
-  'https://i.ibb.co/xSYxn0jt/image.png',
-  'https://i.ibb.co/DfTZtHJt/image.png',
-];
-
 const CELEB_LABELS = [
   { name: 'Royal Glam Session', tag: 'Editorial' },
   { name: 'Signature Bridal Glow', tag: 'Bridal' },
@@ -296,6 +287,7 @@ const CELEB_LABELS = [
 ];
 
 function CelebrityWall() {
+  const assets = useAssetMap();
   return (
     <section id="celebs" className="relative py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1400px] mx-auto">
@@ -312,8 +304,8 @@ function CelebrityWall() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
-          {CELEB_IMAGES.map((src, i) => {
-            const meta = CELEB_LABELS[i] ?? { name: 'Royal Session', tag: 'Studio' };
+          {CELEB_LABELS.map((meta, i) => {
+            const src = assets[`celeb.${i}`];
             const tall = i % 3 === 0;
             return (
               <motion.div
@@ -356,11 +348,11 @@ function CelebrityWall() {
   );
 }
 
-const BEFORE_AFTER_SETS = [
+const BEFORE_AFTER_META = [
   {
     label: 'Blonde Highlights Makeover',
-    before: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780710967644-BZv0z3Qo.jpg',
-    after: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780710973845-CLwz5PCE.webp',
+    beforeKey: 'beforeAfter.0.before',
+    afterKey: 'beforeAfter.0.after',
     report: 'Transitioned from dry, uncolored, frizzy strands to luminous, silk-toned customized blonde highlights.',
     minutes: '120 Minutes',
     stylist: 'Blonde Highlights Specialist',
@@ -368,8 +360,8 @@ const BEFORE_AFTER_SETS = [
   },
   {
     label: 'Royal Bridal Majesty',
-    before: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780713789497-BpvGDGYg.jpg',
-    after: 'https://6a23007fb1f86057657a3754--preeminent-kheer-e41022.netlify.app/assets/royal_bride_1780677236702-DtnfrWoW.png',
+    beforeKey: 'beforeAfter.1.before',
+    afterKey: 'beforeAfter.1.after',
     report: 'Complete royal bridal transformation: HD airbrush makeup, saree draping with hair pearls and a custom updo.',
     minutes: '180 Minutes',
     stylist: 'Bridal Master Artist',
@@ -378,6 +370,7 @@ const BEFORE_AFTER_SETS = [
 ];
 
 function BeforeAfter() {
+  const assets = useAssetMap();
   const [active, setActive] = useState(0);
   const [pos, setPos] = useState(50);
   const [dragging, setDragging] = useState(false);
@@ -408,7 +401,9 @@ function BeforeAfter() {
     };
   }, [dragging, updateFromClientX]);
 
-  const set = BEFORE_AFTER_SETS[active];
+  const set = BEFORE_AFTER_META[active];
+  const beforeSrc = assets[set.beforeKey];
+  const afterSrc = assets[set.afterKey];
 
   return (
     <section id="before-after" className="relative py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 border-y border-white/5 bg-dark-900/40">
@@ -425,7 +420,7 @@ function BeforeAfter() {
 
         {/* selector pills */}
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
-          {BEFORE_AFTER_SETS.map((s, i) => (
+          {BEFORE_AFTER_META.map((s, i) => (
             <button
               key={s.label}
               onClick={() => { setActive(i); setPos(50); }}
@@ -447,10 +442,10 @@ function BeforeAfter() {
             className="relative w-full aspect-4/5 sm:aspect-5/4 lg:aspect-4/3 rounded-2xl sm:rounded-3xl overflow-hidden ring-glow border border-white/10 select-none touch-none"
           >
             {/* AFTER (base) */}
-            <img src={set.after} alt="After transformation" className="absolute inset-0 w-full h-full object-cover premium-filter" />
+            <img src={afterSrc} alt="After transformation" className="absolute inset-0 w-full h-full object-cover premium-filter" />
             {/* BEFORE (clipped from left) */}
             <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-              <img src={set.before} alt="Before transformation" className="absolute inset-0 w-full h-full object-cover premium-filter" />
+              <img src={beforeSrc} alt="Before transformation" className="absolute inset-0 w-full h-full object-cover premium-filter" />
             </div>
 
             {/* Labels */}
@@ -586,16 +581,18 @@ function Services() {
 }
 
 function Gallery() {
-  const mediaItems = [
-    { type: 'video', src: 'https://salon-95dg.vercel.app/assets/beautiful_girl_haircut.mp4', span: 'md:col-span-2 md:row-span-2' },
-    { type: 'image', src: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/hairstylist_cutting_hair_1780683711133-Dj7VEaxz.png', span: 'col-span-1' },
-    { type: 'image', src: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780710973845-CLwz5PCE.webp', span: 'col-span-1' },
-    { type: 'video', src: 'https://salon-95dg.vercel.app/assets/highlight.mp4', span: 'col-span-1' },
-    { type: 'video', src: 'https://salon-95dg.vercel.app/assets/good_hair_curl.mp4', span: 'col-span-1' },
-    { type: 'image', src: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780715097350-BvG1HgsH.jpg', span: 'md:col-span-2' },
-    { type: 'video', src: 'https://salon-95dg.vercel.app/assets/beautiful_girl_hair.mp4', span: 'col-span-1 md:col-span-2' },
-    { type: 'image', src: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780713789497-BpvGDGYg.jpg', span: 'col-span-1' },
-  ];
+  const assets = useAssetMap();
+  const layout = [
+    { type: 'video', key: 'gallery.0', span: 'md:col-span-2 md:row-span-2' },
+    { type: 'image', key: 'gallery.1', span: 'col-span-1' },
+    { type: 'image', key: 'gallery.2', span: 'col-span-1' },
+    { type: 'video', key: 'gallery.3', span: 'col-span-1' },
+    { type: 'video', key: 'gallery.4', span: 'col-span-1' },
+    { type: 'image', key: 'gallery.5', span: 'md:col-span-2' },
+    { type: 'video', key: 'gallery.6', span: 'col-span-1 md:col-span-2' },
+    { type: 'image', key: 'gallery.7', span: 'col-span-1' },
+  ] as const;
+  const mediaItems = layout.map((m) => ({ ...m, src: assets[m.key] }));
 
   return (
     <section id="gallery" className="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
@@ -820,35 +817,72 @@ function Footer() {
   );
 }
 
-export default function App() {
-  return (
-    <div className="min-h-screen selection:bg-brand-500 selection:text-white overflow-x-hidden pb-24 lg:pb-0">
-      <TopBar />
-      <Navbar />
-      <main>
-        <Hero />
-        <Marquee />
-        <CelebrityWall />
-        <BeforeAfter />
-        <Services />
-        <Gallery />
-        <Reviews />
-        <Location />
-      </main>
-      <Footer />
+function useIsEditRoute() {
+  const [isEdit, setIsEdit] = useState(
+    typeof window !== 'undefined' && window.location.pathname.replace(/\/+$/, '') === '/edit',
+  );
+  useEffect(() => {
+    const onChange = () => setIsEdit(window.location.pathname.replace(/\/+$/, '') === '/edit');
+    window.addEventListener('popstate', onChange);
+    window.addEventListener('hashchange', onChange);
+    return () => {
+      window.removeEventListener('popstate', onChange);
+      window.removeEventListener('hashchange', onChange);
+    };
+  }, []);
+  return isEdit;
+}
 
-      {/* Mobile Sticky CTA */}
-      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
+export default function App() {
+  const isEdit = useIsEditRoute();
+
+  if (isEdit) {
+    return (
+      <AssetProvider>
+        <EditPanel />
+      </AssetProvider>
+    );
+  }
+
+  return (
+    <AssetProvider>
+      <div className="min-h-screen selection:bg-brand-500 selection:text-white overflow-x-hidden pb-24 lg:pb-0">
+        <TopBar />
+        <Navbar />
+        <main>
+          <Hero />
+          <Marquee />
+          <CelebrityWall />
+          <BeforeAfter />
+          <Services />
+          <Gallery />
+          <Reviews />
+          <Location />
+        </main>
+        <Footer />
+
+        {/* Mobile Sticky CTA */}
+        <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full bg-linear-to-r from-brand-500 to-brand-600 text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>Instant VIP Booking</span>
+          </a>
+        </div>
+
+        {/* Discreet admin link */}
         <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full bg-linear-to-r from-brand-500 to-brand-600 text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
+          href="/edit"
+          className="fixed bottom-2 right-2 z-40 text-[10px] text-white/20 hover:text-brand-400 px-2 py-1 tracking-wider uppercase"
+          aria-label="Edit images"
         >
-          <Sparkles className="w-4 h-4" />
-          <span>Instant VIP Booking</span>
+          Edit
         </a>
       </div>
-    </div>
+    </AssetProvider>
   );
 }
