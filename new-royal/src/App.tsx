@@ -813,6 +813,14 @@ function Footer() {
           </a>
         </div>
       </div>
+      <div className="max-w-[1400px] mx-auto mt-6 pt-5 border-t border-white/5 flex justify-center">
+        <a
+          href="/edit"
+          className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/45 hover:text-brand-400 border border-white/10 hover:border-brand-500/40 rounded-full px-4 py-2 transition-colors"
+        >
+          <Sparkles className="w-3 h-3" /> Admin · Edit Images
+        </a>
+      </div>
     </footer>
   );
 }
@@ -874,14 +882,6 @@ export default function App() {
           </a>
         </div>
 
-        {/* Discreet admin link */}
-        <a
-          href="/edit"
-          className="fixed bottom-2 right-2 z-40 text-[10px] text-white/20 hover:text-brand-400 px-2 py-1 tracking-wider uppercase"
-          aria-label="Edit images"
-        >
-          Edit
-        </a>
       </div>
     </AssetProvider>
   );
