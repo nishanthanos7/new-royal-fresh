@@ -10,7 +10,7 @@ export type AssetEntry = {
 
 export const ASSET_REGISTRY: AssetEntry[] = [
   { key: 'hero.main', label: 'Hero · Main Salon Photo', section: 'Hero', type: 'image',
-    defaultUrl: 'https://6a2395e31f4734afb2d41d2a--astonishing-pie-522cfa.netlify.app/assets/regenerated_image_1780710967644-BZv0z3Qo.jpg' },
+    defaultUrl: 'https://6a23007fb1f86057657a3754--preeminent-kheer-e41022.netlify.app/assets/royal_bride_1780677236702-DtnfrWoW.png' },
 
   { key: 'marquee.0', label: 'Marquee #1', section: 'Marquee', type: 'image',
     defaultUrl: 'https://6a23007fb1f86057657a3754--preeminent-kheer-e41022.netlify.app/assets/royal_bride_1780677236702-DtnfrWoW.png' },

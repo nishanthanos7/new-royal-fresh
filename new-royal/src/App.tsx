@@ -228,8 +228,8 @@ function Hero() {
               <div className="flex items-start gap-3 mb-2">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-brand-400 mt-0.5 shrink-0" />
                 <div>
-                  <div className="text-white text-sm sm:text-base font-bold">M8RP+CCR, Kathmandu 44600</div>
-                  <div className="text-white/55 text-[11px] sm:text-xs mt-1 leading-relaxed hidden sm:block">Conveniently located 1.3 km from central Kathmandu. Full unisex hair design and state-of-the-art bridal suites inside.</div>
+                    <div className="text-white text-sm sm:text-base font-bold">New Baneshwor, Kathmandu, Nepal</div>
+                    <div className="text-white/55 text-[11px] sm:text-xs mt-1 leading-relaxed hidden sm:block">Conveniently located in New Baneshwor. Full unisex hair design and state-of-the-art bridal suites inside.</div>
                 </div>
               </div>
               <div className="flex items-center justify-between pt-3 border-t border-white/10">
@@ -241,6 +241,64 @@ function Hero() {
             </div>
           </div>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function TrustSection() {
+  const assets = useAssetMap();
+  const googleLink = 'https://www.google.com/maps/search/?api=1&query=New+Royal+Beauty+Salon+New+Baneshwor+Kathmandu';
+  const YEARS = '10+';
+  const CLIENTS = '1000+';
+  const RATING = '4.9';
+
+  return (
+    <section id="trust" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+          <div className="rounded-2xl p-6 bg-dark-800/60 backdrop-blur border border-white/10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Star className="w-5 h-5 text-brand-400" />
+                <div>
+                  <div className="text-xs text-white/70 uppercase tracking-[0.18em] font-bold">Google Rating</div>
+                  <div className="text-2xl text-white font-bold">{RATING} <span className="text-sm text-white/50">/ 5</span></div>
+                </div>
+              </div>
+              <p className="text-white/60 text-sm">See genuine reviews and recent feedback from our clients.</p>
+            </div>
+            <a href={googleLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-300 hover:text-brand-400">
+              View on Google →
+            </a>
+          </div>
+
+          <div className="rounded-2xl p-6 bg-dark-800/60 backdrop-blur border border-white/10 flex flex-col">
+            <div className="text-xs text-white/70 uppercase tracking-[0.18em] font-bold mb-3">Transformations</div>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <img src={assets['beforeAfter.0.before']} alt="Before sample" className="w-full h-28 object-cover rounded-lg" />
+              <img src={assets['beforeAfter.0.after']} alt="After sample" className="w-full h-28 object-cover rounded-lg" />
+              <img src={assets['beforeAfter.1.before']} alt="Before sample 2" className="w-full h-28 object-cover rounded-lg" />
+              <img src={assets['beforeAfter.1.after']} alt="After sample 2" className="w-full h-28 object-cover rounded-lg" />
+            </div>
+            <a href="#before-after" className="mt-auto inline-flex items-center gap-2 text-sm font-bold text-white/90 hover:text-brand-400">Explore Before / After →</a>
+          </div>
+
+          <div className="rounded-2xl p-6 bg-dark-800/60 backdrop-blur border border-white/10 flex flex-col justify-between">
+            <div>
+              <div className="text-xs text-white/70 uppercase tracking-[0.18em] font-bold mb-3">Our Trust</div>
+              <div className="flex items-baseline gap-3">
+                <div className="text-3xl font-bold text-white">{CLIENTS}</div>
+                <div className="text-sm text-white/60">Happy Clients</div>
+              </div>
+              <div className="flex items-baseline gap-3 mt-3">
+                <div className="text-3xl font-bold text-white">{YEARS}</div>
+                <div className="text-sm text-white/60">Years Experience</div>
+              </div>
+            </div>
+            <a href={googleLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-300 hover:text-brand-400">Find Us on Map →</a>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -725,7 +783,7 @@ function Location() {
                 </div>
                 <div>
                   <h4 className="font-medium text-sm sm:text-base mb-1 text-white">Location</h4>
-                  <p className="text-white/55 font-light text-xs sm:text-sm">Near B&B Hospital<br />New Baneshwor<br />Kathmandu 44600</p>
+                  <p className="text-white/55 font-light text-xs sm:text-sm">New Baneshwor, Kathmandu, Nepal</p>
                 </div>
               </div>
 
@@ -859,6 +917,7 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
+          <TrustSection />
           <Marquee />
           <CelebrityWall />
           <BeforeAfter />
@@ -879,6 +938,19 @@ export default function App() {
           >
             <Sparkles className="w-4 h-4" />
             <span>Instant VIP Booking</span>
+          </a>
+        </div>
+
+        {/* Floating Quick Buttons: WhatsApp, Call, Google Maps */}
+        <div className="fixed right-4 bottom-20 z-50 flex flex-col gap-3">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-12 h-12 rounded-full bg-linear-to-r from-brand-500 to-brand-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+            <Sparkles className="w-5 h-5" />
+          </a>
+          <a href="tel:+9779813451412" aria-label="Call Now" className="w-12 h-12 rounded-full bg-white/6 border border-white/10 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+            <Phone className="w-5 h-5" />
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=New+Royal+Beauty+Salon+New+Baneshwor+Kathmandu" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+            <MapPin className="w-5 h-5" />
           </a>
         </div>
 
