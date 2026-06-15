@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, Star, ShieldCheck, Sparkles, Award, Menu, X, Crown, ChevronsLeftRight } from 'lucide-react';
+import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, Star, ShieldCheck, Sparkles, Award, Menu, X, Crown, ChevronsLeftRight, Send } from 'lucide-react';
 import { AssetProvider, useAsset, useAssetMap } from './imageRegistry';
 import EditPanel from './EditPanel';
 
@@ -16,7 +16,7 @@ function TopBar() {
     '📞 BOOK HOTLINE: 981-3451412',
     '👰 ROYAL BRIDAL MAKEUP & SAREE DRAPING',
     '🌟 PREMIUM BALAYAGE & BLONDE HIGHLIGHTS',
-    '📍 NEAR B&B HOSPITAL, KATHMANDU 44600',
+    
   ];
   return (
     <div className="relative overflow-hidden border-b border-brand-500/20 bg-linear-to-r from-brand-700/40 via-brand-500/30 to-accent-500/30 backdrop-blur-sm">
@@ -73,21 +73,21 @@ function Navbar() {
 
           <div className="flex items-center space-x-3 sm:space-x-4">
             <div className="hidden sm:flex items-center space-x-3">
-              <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="text-white/55 hover:text-brand-400 transition-colors">
-                <Facebook className="w-4 h-4 lg:w-5 lg:h-5" />
+              <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="text-white/75 hover:text-blue-400 transition-colors hover:scale-110">
+                <Facebook className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="text-white/55 hover:text-brand-400 transition-colors">
-                <Instagram className="w-4 h-4 lg:w-5 lg:h-5" />
+              <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="text-white/75 hover:text-pink-400 transition-colors hover:scale-110">
+                <Instagram className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
             </div>
             <a
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 bg-linear-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white px-4 lg:px-5 py-2 lg:py-2.5 rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
+              className="hidden md:inline-flex items-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-4 lg:px-5 py-2 lg:py-2.5 rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Instant VIP Booking</span>
+              <Send className="w-3.5 h-3.5" />
+              <span>Message WhatsApp</span>
             </a>
             <button className="lg:hidden text-white hover:text-brand-400 transition-colors" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -113,17 +113,17 @@ function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="mt-4 mb-2 inline-flex items-center justify-center gap-2 bg-linear-to-r from-brand-500 to-brand-600 text-white px-5 py-3 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
+                className="mt-4 mb-2 inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 text-white px-5 py-3 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>Instant VIP Booking</span>
+                <Send className="w-4 h-4" />
+                <span>Message WhatsApp</span>
               </a>
-              <div className="flex items-center space-x-5 pt-3 pb-2">
-                <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-brand-400 transition-colors">
-                  <Facebook className="w-5 h-5" />
+              <div className="flex items-center space-x-4 pt-3 pb-2">
+                <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-blue-400 transition-colors hover:scale-110">
+                  <Facebook className="w-6 h-6" />
                 </a>
-                <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-brand-400 transition-colors">
-                  <Instagram className="w-5 h-5" />
+                <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-pink-400 transition-colors hover:scale-110">
+                  <Instagram className="w-6 h-6" />
                 </a>
               </div>
             </div>
@@ -321,7 +321,7 @@ function Marquee() {
           <div key={groupIndex} className="flex space-x-5 sm:space-x-8">
             {images.map((src, i) => (
               <div key={`${groupIndex}-${i}`} className="inline-block w-[180px] h-[230px] sm:w-60 sm:h-[300px] lg:w-[280px] lg:h-[350px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shrink-0 border border-white/20">
-                <img src={src} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="Salon Vibes" loading="lazy" />
+                <img src={src} className="w-full h-full object-cover hover:scale-105 transition-all duration-700" alt="Salon Vibes" loading="lazy" />
               </div>
             ))}
           </div>
@@ -567,9 +567,9 @@ function BeforeAfter() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex w-full items-center justify-center gap-2 bg-linear-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white px-5 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
+              className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-5 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
             >
-              <Sparkles className="w-4 h-4" /> Book this Look
+              <Send className="w-3.5 h-3.5" /> Message on WhatsApp
             </a>
           </div>
         </div>
@@ -863,11 +863,11 @@ function Footer() {
         </div>
         <p className="text-white/40 text-xs sm:text-sm font-light text-center">© {new Date().getFullYear()} New Royal Beauty Salon. All rights reserved.</p>
         <div className="flex items-center space-x-3 sm:space-x-4">
-          <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-400 hover:border-brand-400 transition-colors">
-            <Facebook className="w-4 h-4" />
+          <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-white/20 flex items-center justify-center text-white/80 hover:text-blue-400 hover:border-blue-400 hover:scale-110 transition-all" title="Follow on Facebook">
+            <Facebook className="w-5 h-5" />
           </a>
-          <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-400 hover:border-brand-400 transition-colors">
-            <Instagram className="w-4 h-4" />
+          <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-white/20 flex items-center justify-center text-white/80 hover:text-pink-400 hover:border-pink-400 hover:scale-110 transition-all" title="Follow on Instagram">
+            <Instagram className="w-5 h-5" />
           </a>
         </div>
       </div>
@@ -934,17 +934,17 @@ export default function App() {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full bg-linear-to-r from-brand-500 to-brand-600 text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
+            className="flex items-center justify-center gap-2 w-full bg-linear-to-r from-green-500 to-green-600 text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Instant VIP Booking</span>
+            <Send className="w-4 h-4" />
+            <span>Message WhatsApp</span>
           </a>
         </div>
 
         {/* Floating Quick Buttons: WhatsApp, Call, Google Maps */}
         <div className="fixed right-4 bottom-20 z-50 flex flex-col gap-3">
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-12 h-12 rounded-full bg-linear-to-r from-brand-500 to-brand-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
-            <Sparkles className="w-5 h-5" />
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-12 h-12 rounded-full bg-linear-to-r from-green-500 to-green-600 text-white flex items-center justify-center shadow-lg hover:scale-115 transition-transform" title="Chat on WhatsApp">
+            <Send className="w-5 h-5" />
           </a>
           <a href="tel:+9779813451412" aria-label="Call Now" className="w-12 h-12 rounded-full bg-white/6 border border-white/10 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
             <Phone className="w-5 h-5" />
