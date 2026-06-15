@@ -60,11 +60,18 @@ export default async function handler(req: Request): Promise<Response> {
   const safeKey = safeName(key);
   const pathname = `assets/${safeKey}-${Date.now()}.${ext}`;
 
-  const result = await put(pathname, file, {
-    access: 'public',
-    contentType: file.type || undefined,
-    addRandomSuffix: true,
-  });
-
-  return jsonResponse({ url: result.url, pathname: result.pathname });
+  try {
+    const result = await put(pathname, file, {
+      access: 'public',
+      contentType: file.type || undefined,
+      addRandomSuffix: true,
+    });
+    return jsonResponse({ url: result.url, pathname: result.pathname });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[upload] Vercel Blob error:', message);
+    return jsonResponse({ 
+      error: `Upload service error: ${message}` 
+    }, 500);
+  }
 }
