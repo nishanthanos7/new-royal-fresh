@@ -137,13 +137,13 @@ function Navbar() {
 function Hero() {
   const heroSrc = useAsset('hero.main');
   return (
-    <section id="top" className="relative pt-8 sm:pt-10 lg:pt-16 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+    <section id="top" className="relative pt-10 sm:pt-12 lg:pt-16 pb-20 sm:pb-24 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 lg:space-y-7 order-2 lg:order-1"
+          className="space-y-7 lg:space-y-8 order-2 lg:order-1"
         >
           <div className="inline-flex items-center gap-2 border border-brand-500/30 rounded-full px-3 py-1.5 sm:px-4 bg-brand-500/10 backdrop-blur">
             <div className="flex text-brand-400">
@@ -162,18 +162,18 @@ function Hero() {
             Step into Kathmandu's original neon-fueled beauty parlor where scissors fly, brushes dance and hair colors burst! Flawless traditional bridal saree draping, custom blonde highlights, premium unisex pampering by dynamic hair experts.
           </p>
 
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            <div className="rounded-xl border border-brand-500/20 bg-dark-800/60 backdrop-blur p-3 sm:p-4">
-              <div className="text-brand-400 text-xs sm:text-sm font-bold">Opens 9 AM</div>
-              <div className="text-[9px] sm:text-[10px] text-white/45 uppercase tracking-wider mt-1">Everyday</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+            <div className="rounded-xl border border-brand-500/20 bg-dark-800/60 backdrop-blur p-3.5 sm:p-5">
+              <div className="text-brand-400 text-sm sm:text-base font-bold">Opens 9 AM</div>
+              <div className="text-[10px] sm:text-xs text-white/45 uppercase tracking-wider mt-2 font-medium">Everyday</div>
             </div>
-            <div className="rounded-xl border border-white/10 bg-dark-800/60 backdrop-blur p-3 sm:p-4">
-              <div className="text-white text-xs sm:text-sm font-bold">981-3451412</div>
-              <div className="text-[9px] sm:text-[10px] text-white/45 uppercase tracking-wider mt-1">Call / WhatsApp</div>
+            <div className="rounded-xl border border-white/10 bg-dark-800/60 backdrop-blur p-3.5 sm:p-5">
+              <div className="text-white text-sm sm:text-base font-bold">981-345-1412</div>
+              <div className="text-[10px] sm:text-xs text-white/45 uppercase tracking-wider mt-2 font-medium">Call Us</div>
             </div>
-            <div className="rounded-xl border border-white/10 bg-dark-800/60 backdrop-blur p-3 sm:p-4">
-              <div className="text-white text-xs sm:text-sm font-bold">1.3 km</div>
-              <div className="text-[9px] sm:text-[10px] text-white/45 uppercase tracking-wider mt-1">From KTM Center</div>
+            <div className="hidden md:block rounded-xl border border-white/10 bg-dark-800/60 backdrop-blur p-3.5 sm:p-5">
+              <div className="text-white text-sm sm:text-base font-bold">1.3 km</div>
+              <div className="text-[10px] sm:text-xs text-white/45 uppercase tracking-wider mt-2 font-medium">From Center</div>
             </div>
           </div>
 
@@ -182,25 +182,24 @@ function Hero() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white px-6 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.18em] btn-glow transition-all group"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-6 py-4 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.18em] btn-glow transition-all group"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>Book Your Session</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Send className="w-4 h-4" />
+              <span>Message WhatsApp</span>
             </a>
             <a
               href={`tel:+9779813451412`}
-              className="inline-flex items-center justify-center gap-2 border border-white/15 bg-white/5 text-white px-6 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.18em] hover:border-brand-500/40 hover:bg-white/10 transition-all"
+              className="hidden sm:flex items-center justify-center gap-2 border border-white/15 bg-white/5 text-white px-6 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.18em] hover:border-green-400/50 hover:bg-white/10 transition-all group"
             >
               <Phone className="w-4 h-4" />
-              <span>Dial 981-3451412</span>
+              <span>Call Now</span>
             </a>
           </div>
 
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-[10px] sm:text-xs font-medium text-white/45 pt-2">
-            <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-green-400/80" /> Fully Sanitary & Masked</span>
-            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-brand-400" /> 1000+ Happy Clients</span>
-            <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-accent-400" /> Imported Products</span>
+          <div className="flex flex-wrap gap-x-3 gap-y-2.5 text-[10px] sm:text-xs font-medium text-white/50 pt-4 sm:pt-6">
+            <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-green-400/80" /> Certified & Safe</span>
+            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-brand-400" /> 1000+ Clients</span>
+            <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-accent-400" /> Premium Products</span>
           </div>
         </motion.div>
 
@@ -224,19 +223,14 @@ function Hero() {
               <div className="text-xl sm:text-2xl font-bold text-white">4.9<span className="text-xs sm:text-sm text-white/40 ml-1">/ 5</span></div>
             </div>
 
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 bg-dark-900/80 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5">
-              <div className="flex items-start gap-3 mb-2">
-                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-brand-400 mt-0.5 shrink-0" />
-                <div>
-                    <div className="text-white text-sm sm:text-base font-bold">New Baneshwor, Kathmandu, Nepal</div>
-                    <div className="text-white/55 text-[11px] sm:text-xs mt-1 leading-relaxed hidden sm:block">Conveniently located in New Baneshwor. Full unisex hair design and state-of-the-art bridal suites inside.</div>
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 bg-dark-900/85 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-brand-400 shrink-0" />
+                  <span className="text-white text-sm sm:text-base font-bold hidden sm:inline">New Baneshwor, Kathmandu</span>
+                  <span className="text-white text-xs sm:hidden font-bold">Get Directions</span>
                 </div>
-              </div>
-              <div className="flex items-center justify-between pt-3 border-t border-white/10">
-                <span className="text-[10px] sm:text-xs text-brand-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
-                  <Clock className="w-3 h-3" /> Saturday Slot: Open 9 AM
-                </span>
-                <a href="#location" className="text-[10px] sm:text-xs text-white font-semibold underline underline-offset-4 hover:text-brand-400 transition-colors">Get Directions →</a>
+                <a href="#location" className="text-brand-400 hover:text-brand-300 transition-colors text-xs sm:text-sm font-bold whitespace-nowrap">→</a>
               </div>
             </div>
           </div>
