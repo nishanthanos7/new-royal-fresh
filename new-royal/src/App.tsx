@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, Star, ShieldCheck, Sparkles, Award, Menu, X, Crown, ChevronsLeftRight } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { AssetProvider, useAsset, useAssetMap } from './imageRegistry';
 import EditPanel from './EditPanel';
 
@@ -8,24 +9,6 @@ const WHATSAPP_NUMBER = '9779813451412';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 const INSTAGRAM_LINK = 'https://www.instagram.com/newroyalunisex/';
 const FACEBOOK_LINK = 'https://www.facebook.com/NewRoyalBeautysalon12345/';
-
-// WhatsApp Logo Component
-function WhatsAppLogo({ className = 'w-4 h-4' }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.769c0 2.541.662 5.031 1.92 7.231L.654 23.765l7.73-2.557a9.823 9.823 0 004.746 1.208h.006c5.318 0 9.67-4.329 9.67-9.77a9.865 9.865 0 00-9.823-9.857" />
-    </svg>
-  );
-}
-
-function SendIcon({ className = 'w-4 h-4' }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <line x1="22" y1="2" x2="11" y2="13" />
-      <polygon points="22 2 15 22 11 13 2 9 22 2" />
-    </svg>
-  );
-}
 
 function TopBar() {
   const items = [
@@ -104,7 +87,7 @@ function Navbar() {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-4 lg:px-5 py-2 lg:py-2.5 rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
             >
-              <WhatsAppLogo className="w-3.5 h-3.5" />
+              <span className="w-3.5 h-3.5 inline-flex items-center justify-center"><FaWhatsapp size={14} /></span>
               <span>Message WhatsApp</span>
             </a>
             <button className="lg:hidden text-white hover:text-brand-400 transition-colors" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
@@ -133,7 +116,7 @@ function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="mt-4 mb-2 inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 text-white px-5 py-3 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
               >
-                <WhatsAppLogo className="w-4 h-4" />
+                <span className="w-4 h-4 inline-flex items-center justify-center"><FaWhatsapp size={16} /></span>
                 <span>Message WhatsApp</span>
               </a>
               <div className="flex items-center space-x-4 pt-3 pb-2">
@@ -153,7 +136,26 @@ function Navbar() {
 }
 
 function Hero() {
-  const heroSrc = useAsset('hero.main');
+  const assets = useAssetMap();
+  const [activeSlide, setActiveSlide] = useState(0);
+  
+  // Best hero carousel images
+  const carouselImages = [
+    { key: 'celeb.0', title: 'Professional Styling' },
+    { key: 'marquee.1', title: 'Hair Beauty' },
+    { key: 'celeb.1', title: 'Premium Services' },
+    { key: 'marquee.2', title: 'Expert Stylists' },
+    { key: 'celeb.2', title: 'Client Transformation' },
+  ];
+
+  // Auto-play carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 5000); // Change every 5 seconds
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
   return (
     <section id="top" className="relative pt-10 sm:pt-12 lg:pt-16 pb-20 sm:pb-24 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -202,7 +204,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-6 py-4 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.18em] btn-glow transition-all group"
             >
-              <WhatsAppLogo className="w-4 h-4" />
+              <span className="w-4 h-4 inline-flex items-center justify-center"><FaWhatsapp size={16} /></span>
               <span>Message WhatsApp</span>
             </a>
             <a
@@ -227,21 +229,47 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative order-1 lg:order-2"
         >
-          <div className="relative aspect-4/5 sm:aspect-5/6 rounded-2xl lg:rounded-3xl overflow-hidden ring-glow border border-white/10 group">
-            <img
-              src={heroSrc}
-              alt="New Royal Salon Interior"
-              className="w-full h-full object-cover object-center premium-filter transition-transform duration-1000 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-dark-950 via-dark-950/40 to-transparent"></div>
-            <div className="absolute inset-0 bg-linear-to-br from-brand-500/10 via-transparent to-transparent mix-blend-overlay"></div>
+          {/* Carousel Container */}
+          <div className="relative aspect-4/5 sm:aspect-5/6 rounded-2xl lg:rounded-3xl overflow-hidden group">
+            {/* Carousel Images */}
+            <div className="relative w-full h-full">
+              <AnimatePresence mode="wait">
+                {carouselImages.map((slide, idx) => (
+                  idx === activeSlide && (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="absolute inset-0"
+                    >
+                      <img
+                        src={assets[slide.key]}
+                        alt={slide.title}
+                        className="w-full h-full object-cover premium-filter"
+                      />
+                    </motion.div>
+                  )
+                ))}
+              </AnimatePresence>
+            </div>
 
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-dark-900/70 backdrop-blur-md border border-white/10 rounded-xl px-3 py-2 text-right">
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-linear-to-t from-dark-950 via-dark-950/30 to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-brand-500/10 via-transparent to-transparent mix-blend-overlay pointer-events-none"></div>
+
+            {/* Border & Shadow */}
+            <div className="absolute inset-0 rounded-2xl lg:rounded-3xl border border-white/20 pointer-events-none shadow-2xl shadow-brand-500/20"></div>
+
+            {/* Rating Badge */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-dark-900/80 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-right">
               <div className="text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-brand-400">Royal Rating</div>
               <div className="text-xl sm:text-2xl font-bold text-white">4.9<span className="text-xs sm:text-sm text-white/40 ml-1">/ 5</span></div>
             </div>
 
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 bg-dark-900/85 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5">
+            {/* Location Badge */}
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 bg-dark-900/85 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-brand-400 shrink-0" />
@@ -250,6 +278,22 @@ function Hero() {
                 </div>
                 <a href="#location" className="text-brand-400 hover:text-brand-300 transition-colors text-xs sm:text-sm font-bold whitespace-nowrap">→</a>
               </div>
+            </div>
+
+            {/* Carousel Indicators (Dots) */}
+            <div className="absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+              {carouselImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    idx === activeSlide 
+                      ? 'w-8 bg-brand-400' 
+                      : 'w-2 bg-white/40 hover:bg-white/60'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
         </motion.div>
@@ -581,7 +625,8 @@ function BeforeAfter() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-5 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
             >
-              <WhatsAppLogo className="w-3.5 h-3.5" /> Message on WhatsApp
+              <span className="w-3.5 h-3.5 inline-flex items-center justify-center"><FaWhatsapp size={14} /></span>
+              <span>Message on WhatsApp</span>
             </a>
           </div>
         </div>
@@ -948,7 +993,7 @@ export default function App() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full bg-linear-to-r from-green-500 to-green-600 text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
           >
-            <WhatsAppLogo className="w-4 h-4" />
+            <span className="w-4 h-4 inline-flex items-center justify-center"><FaWhatsapp size={16} /></span>
             <span>Message WhatsApp</span>
           </a>
         </div>
@@ -956,7 +1001,7 @@ export default function App() {
         {/* Floating Quick Buttons: WhatsApp, Call, Google Maps */}
         <div className="fixed right-4 bottom-20 z-50 flex flex-col gap-3">
           <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-12 h-12 rounded-full bg-linear-to-r from-green-500 to-green-600 text-white flex items-center justify-center shadow-lg hover:scale-115 transition-transform" title="Chat on WhatsApp">
-            <WhatsAppLogo className="w-5 h-5" />
+            <FaWhatsapp size={20} />
           </a>
           <a href="tel:+9779813451412" aria-label="Call Now" className="w-12 h-12 rounded-full bg-white/6 border border-white/10 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
             <Phone className="w-5 h-5" />
