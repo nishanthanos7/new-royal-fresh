@@ -153,13 +153,13 @@ function Hero() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[4.5rem] xl:text-[5rem] font-serif text-white leading-[1.05] font-bold tracking-tight">
-            Kathmandu's<br />
-            <span className="text-gradient-pink">Crazy Glamour Salon</span><br />
-            <span className="text-white/85">& Unisex Elite</span>
+            Best Unisex Salon<br />
+            <span className="text-gradient-pink">in New Baneshwor</span><br />
+            <span className="text-white/85">Kathmandu</span>
           </h1>
 
           <p className="max-w-xl text-sm sm:text-base lg:text-lg text-white/65 leading-relaxed font-light">
-            Step into Kathmandu's original neon-fueled beauty parlor where scissors fly, brushes dance and hair colors burst! Flawless traditional bridal saree draping, custom blonde highlights, premium unisex pampering by dynamic hair experts.
+            Professional hair, beauty, and makeup services with 12+ years of experience. We offer haircuts, styling, color, keratin treatments, nano plasia, bridal makeup, facials, nails, and more. Premium products, certified stylists, and affordable prices.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
@@ -345,13 +345,13 @@ function CelebrityWall() {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
           <h3 className="text-xs sm:text-sm font-bold tracking-[0.22em] text-brand-400 uppercase flex items-center justify-center gap-2">
-            <Crown className="w-3.5 h-3.5" /> Celebrity Wall
+            <Crown className="w-3.5 h-3.5" /> Our Work
           </h3>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white">
-            Glamour Worn by <span className="text-gradient-pink">Stars</span>
+            Professional <span className="text-gradient-pink">Hair & Beauty</span> Services
           </h2>
           <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">
-            A curated portfolio of celebrity-grade styling sessions crafted in our Kathmandu studio.
+            See some of our best transformations and styling work from clients in Kathmandu.
           </p>
         </div>
 
@@ -402,22 +402,22 @@ function CelebrityWall() {
 
 const BEFORE_AFTER_META = [
   {
-    label: 'Blonde Highlights Makeover',
+    label: 'Blonde Highlights',
     beforeKey: 'beforeAfter.0.before',
     afterKey: 'beforeAfter.0.after',
-    report: 'Transitioned from dry, uncolored, frizzy strands to luminous, silk-toned customized blonde highlights.',
+    report: 'Client had dry hair and frizz. We applied custom blonde highlights with keratin treatment. Results: shiny, healthy, soft hair.',
     minutes: '120 Minutes',
-    stylist: 'Blonde Highlights Specialist',
-    products: 'Silk Keratin + HD Foundation',
+    stylist: 'Hair Color specialist',
+    products: 'Keratin treatment & premium color',
   },
   {
-    label: 'Royal Bridal Majesty',
+    label: 'Bridal Makeup & Hair',
     beforeKey: 'beforeAfter.1.before',
     afterKey: 'beforeAfter.1.after',
-    report: 'Complete royal bridal transformation: HD airbrush makeup, saree draping with hair pearls and a custom updo.',
+    report: 'Complete bridal package: professional makeup, saree draping, and hair styling. Bride looked beautiful and felt confident.',
     minutes: '180 Minutes',
-    stylist: 'Bridal Master Artist',
-    products: 'Airbrush HD + Royal Saree Kit',
+    stylist: 'Bridal specialist',
+    products: 'Professional makeup & styling',
   },
 ];
 
@@ -462,12 +462,12 @@ function BeforeAfter() {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
           <h3 className="text-xs sm:text-sm font-bold tracking-[0.22em] text-brand-400 uppercase flex items-center justify-center gap-2">
-            <ChevronsLeftRight className="w-3.5 h-3.5" /> Master Royal Makeovers
+            <ChevronsLeftRight className="w-3.5 h-3.5" /> Real Results
           </h3>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white">
-            Interactive <span className="text-gradient-pink">Before / After</span> Slider
+            <span className="text-gradient-pink">Before / After</span> Examples
           </h2>
-          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Drag the handle to reveal the transformation in real time.</p>
+          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Drag the handle to see real transformations from our recent clients.</p>
         </div>
 
         {/* selector pills */}
@@ -596,12 +596,12 @@ function Services() {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
           <h3 className="text-xs sm:text-sm font-bold tracking-[0.22em] text-brand-400 uppercase flex items-center justify-center gap-2">
-            <Sparkles className="w-3.5 h-3.5" /> Premium Offerings
+            <Sparkles className="w-3.5 h-3.5" /> Our Services
           </h3>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white">
-            Our Royal <span className="text-gradient-pink">Services</span>
+            Hair, Beauty & <span className="text-gradient-pink">Makeup</span> Services
           </h2>
-          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Discover our range of premium beauty treatments designed for perfection.</p>
+          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">We offer professional hair care, beauty treatments, and makeup services.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {services.map((s, i) => (
@@ -650,12 +650,12 @@ function Gallery() {
     <section id="gallery" className="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
          <h3 className="text-xs sm:text-sm font-bold tracking-[0.22em] text-brand-400 uppercase flex items-center justify-center gap-2">
-           <Instagram className="w-3.5 h-3.5" /> Insta-Styling Cinema
+           <Instagram className="w-3.5 h-3.5" /> Gallery
          </h3>
          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white">
-           Trending Reels & <span className="text-gradient-pink">Design Videos</span>
+           Latest <span className="text-gradient-pink">Salon Photos</span> & Videos
          </h2>
-         <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">A glimpse into our luxurious transformations and behind-the-scenes magic.</p>
+         <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Check out our recent client transformations and salon work on Instagram.</p>
        </div>
        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] sm:auto-rows-[200px] lg:auto-rows-[250px] gap-3 sm:gap-4">
          {mediaItems.map((item, i) => (
@@ -716,12 +716,12 @@ function Reviews() {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
           <h3 className="text-xs sm:text-sm font-bold tracking-[0.22em] text-brand-400 uppercase flex items-center justify-center gap-2">
-            <Star className="w-3.5 h-3.5 fill-brand-400" /> Testimonials
+            <Star className="w-3.5 h-3.5 fill-brand-400" /> Client Reviews
           </h3>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white">
-            Client <span className="text-gradient-pink">Love</span>
+            What Our <span className="text-gradient-pink">Clients Say</span>
           </h2>
-          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Hear what our clients have to say about their royal glow-up.</p>
+          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Read honest reviews from our satisfied customers in Kathmandu.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
@@ -761,12 +761,12 @@ function Location() {
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
           <h3 className="text-xs sm:text-sm font-bold tracking-[0.22em] text-brand-400 uppercase flex items-center justify-center gap-2">
-            <MapPin className="w-3.5 h-3.5" /> Contact & Map
+            <MapPin className="w-3.5 h-3.5" /> Contact Us
           </h3>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white">
-            Our <span className="text-gradient-pink">Sanctuary</span>
+            Visit Us in <span className="text-gradient-pink">New Baneshwor</span>
           </h2>
-          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Step into a world of elegance. Book your appointment today and let our experts pamper you.</p>
+          <p className="text-white/60 font-light text-sm sm:text-base lg:text-lg px-2">Call or message us on WhatsApp to book an appointment. We are open every day.</p>
         </div>
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <div className="space-y-4 sm:space-y-5">
