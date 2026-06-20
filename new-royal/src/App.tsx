@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, Star, ShieldCheck, Sparkles, Award, Menu, X, Crown, ChevronsLeftRight, Send } from 'lucide-react';
+import { MapPin, Phone, Instagram, Facebook, ArrowRight, Clock, Star, ShieldCheck, Sparkles, Award, Menu, X, Crown, ChevronsLeftRight } from 'lucide-react';
 import { AssetProvider, useAsset, useAssetMap } from './imageRegistry';
 import EditPanel from './EditPanel';
 
@@ -8,6 +8,24 @@ const WHATSAPP_NUMBER = '9779813451412';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 const INSTAGRAM_LINK = 'https://www.instagram.com/newroyalunisex/';
 const FACEBOOK_LINK = 'https://www.facebook.com/NewRoyalBeautysalon12345/';
+
+// WhatsApp Logo Component
+function WhatsAppLogo({ className = 'w-4 h-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.769c0 2.541.662 5.031 1.92 7.231L.654 23.765l7.73-2.557a9.823 9.823 0 004.746 1.208h.006c5.318 0 9.67-4.329 9.67-9.77a9.865 9.865 0 00-9.823-9.857" />
+    </svg>
+  );
+}
+
+function SendIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <line x1="22" y1="2" x2="11" y2="13" />
+      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </svg>
+  );
+}
 
 function TopBar() {
   const items = [
@@ -86,7 +104,7 @@ function Navbar() {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-4 lg:px-5 py-2 lg:py-2.5 rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
             >
-              <Send className="w-3.5 h-3.5" />
+              <WhatsAppLogo className="w-3.5 h-3.5" />
               <span>Message WhatsApp</span>
             </a>
             <button className="lg:hidden text-white hover:text-brand-400 transition-colors" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
@@ -115,7 +133,7 @@ function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="mt-4 mb-2 inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 text-white px-5 py-3 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
               >
-                <Send className="w-4 h-4" />
+                <WhatsAppLogo className="w-4 h-4" />
                 <span>Message WhatsApp</span>
               </a>
               <div className="flex items-center space-x-4 pt-3 pb-2">
@@ -184,7 +202,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-6 py-4 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.18em] btn-glow transition-all group"
             >
-              <Send className="w-4 h-4" />
+              <WhatsAppLogo className="w-4 h-4" />
               <span>Message WhatsApp</span>
             </a>
             <a
@@ -563,7 +581,7 @@ function BeforeAfter() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white px-5 py-3 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] btn-glow transition-all"
             >
-              <Send className="w-3.5 h-3.5" /> Message on WhatsApp
+              <WhatsAppLogo className="w-3.5 h-3.5" /> Message on WhatsApp
             </a>
           </div>
         </div>
@@ -930,7 +948,7 @@ export default function App() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full bg-linear-to-r from-green-500 to-green-600 text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.18em] btn-glow"
           >
-            <Send className="w-4 h-4" />
+            <WhatsAppLogo className="w-4 h-4" />
             <span>Message WhatsApp</span>
           </a>
         </div>
@@ -938,7 +956,7 @@ export default function App() {
         {/* Floating Quick Buttons: WhatsApp, Call, Google Maps */}
         <div className="fixed right-4 bottom-20 z-50 flex flex-col gap-3">
           <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-12 h-12 rounded-full bg-linear-to-r from-green-500 to-green-600 text-white flex items-center justify-center shadow-lg hover:scale-115 transition-transform" title="Chat on WhatsApp">
-            <Send className="w-5 h-5" />
+            <WhatsAppLogo className="w-5 h-5" />
           </a>
           <a href="tel:+9779813451412" aria-label="Call Now" className="w-12 h-12 rounded-full bg-white/6 border border-white/10 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
             <Phone className="w-5 h-5" />
